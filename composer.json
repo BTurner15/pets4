@@ -1,0 +1,16 @@
+{
+  "name": "bturner/328/pets42",
+  "authors": [
+    {
+      "name": "Bruce Turner",
+      "email": "BTurner15@mail.greenriver.edu"
+    },
+    {
+      "name": "Brian Kiehn",
+      "email": "bkiehn@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
