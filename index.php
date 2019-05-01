@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Bruce
- * Date: 04-26-2019
- * Time: 7:31 PM
-
- * Pair Programming #3 Pets3 */
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 
 //Require autoload
 require_once('vendor/autoload.php');
@@ -25,7 +17,7 @@ $f3->set('colors', array('red', 'green', 'blue'));
 
 //Define a default route
 $f3->route('GET /', function() {
-    echo '<h1>My Pets3</h1>';
+    echo '<h1>My Pets 4</h1>';
     echo "<a href='order'>Order a pet</a>";
 });
 
