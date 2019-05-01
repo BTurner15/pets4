@@ -5,10 +5,15 @@
     <title>form1.html</title>
 </head>
 <body>
-<form action="order2" method="POST">
+<form action="#" method="POST">
     <input type="text" name="animal" value="Animal">
     <br>
     <input type="submit" value="Next">
+    <div class="col-sm-3">
+        <check if="{{ isset(@errors['animal']) }}">
+            <p> {{ @errors['animal'] }}</p>
+        </check>
+    </div>
 </form>
 </body>
 </html>

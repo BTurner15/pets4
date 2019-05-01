@@ -5,13 +5,19 @@
     <title>form2.html</title>
 </head>
 <body>
-<form action="results" method="POST">
+<form action="#" method="POST">
     <fieldset>
-        <select name = "color" id = "myColors">
-            <option   value = "Red">red</option>
-            <option value = "Green">green</option>
-            <option  value = "Blue">blue</option>
+        <select class="form-control" name='color' id="color">
+            <option>--Select a color--</option>
+            <repeat group="{{ @colors }}" value="{{ @colorOption }}">
+                <option>{{ @colorOption }}</option>
+            </repeat>
         </select>
+        <div class="col-sm-3">
+            <check if="{{ isset(@errors['color']) }}">
+                <p> {{ @errors['color'] }}</p>
+            </check>
+        </div>
     </fieldset>
 
     <input type="submit" value="Submit">
