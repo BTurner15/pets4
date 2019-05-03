@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -13,10 +14,9 @@ $f3->set('DEBUG', 3);
 
 $f3->set('colors', array('red', 'green', 'blue'));
 
-
-
 //Define a default route
 $f3->route('GET /', function() {
+    $_SESSION = array();
     echo '<h1>My Pets 4</h1>';
     echo "<a href='order'>Order a pet</a>";
 });
@@ -62,7 +62,7 @@ $f3->route('GET|POST /order2', function($f3) {
 });
 
 $f3->route('GET|POST /results', function() {
-    $_SESSION['color'] =    $_POST['color'];
+    //rerouted via GET, POST array is empty
     $view = new Template();
     echo $view->render('views/results.html');
 });
