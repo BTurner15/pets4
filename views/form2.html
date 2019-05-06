@@ -18,6 +18,13 @@
                 <p> {{ @errors['color'] }}</p>
             </check>
         </div>
+        <div class ="col-sm-3">
+            <p>diseases:</p>
+            <repeat group ="{{@diseases}}" value ="{{ @diseasesOption }}">
+            <label><input type="checkbox" name ="pattern[]" value="{{@diseasesOption}}" <check if="{{ in_array(@diseasesOption,@POST['pattern']) }}">
+                checked </check>>{{@diseasesOption}}</label>
+            </repeat>
+        </div>
     </fieldset>
 
     <input type="submit" value="Submit">
