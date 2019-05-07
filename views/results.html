@@ -1,13 +1,25 @@
 <!DOCTYPE html>
+<!--
+/**
+ * Pair Programming IV with Bruce Turner & Brian Kiehn
+ * GitHub Repo:https://github.com/BTurner15/pets4
+ * File: results.html
+ * Last Modification:
+ *     - Monday May 5 2019
+ *     - Time: 6:15 pm
+ *     - Version 1.0
+ */
+ -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>results.html</title>
+    <title>Results May 6</title>
 </head>
 <body>
-<h1>Result Page</h1>
-<h2> Thank you for Ordering a {{ $_SESSION['color']}} {{ $_SESSION['animal']}}! </h2>
+<h1>Results Page</h1>
 <!-- For Part# 1 of Week 5 Pair Programming Pets IV -->
-<p>Quantity: {{ @SESSION.qty }}</p>
+<p> Thank you for Ordering a {{ $_SESSION['color']}} {{ $_SESSION['animal']}},
+    Quantity: {{$_SESSION['qty']}} ! </p>
+
 </body>
 </html>

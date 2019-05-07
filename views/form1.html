@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<!--
+/**
+ * Pair Programming IV with Bruce Turner & Brian Kiehn
+ * GitHub Repo:https://github.com/BTurner15/pets4
+ * File: form1.html
+ * Last Modification:
+ *     - Monday May 5 2019
+ *     - Time: 6:15 pm
+ *     - Version 1.0
+ */
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,11 +29,12 @@
     <!-- For Part# 1 of Week 5 Pair Programming Pets IV -->
     <label>Quantity
         <input type="text" name="qty" value="{{ @SESSION['qty'] }}">
+        <br>
         <check if="{{ @errors['qty'] }}">
             <span class="err">{{ @errors['qty'] }}</span>
         </check>
     </label>
-
+    <br>
     <input type="submit" value="Next">
 </form>
 </body>

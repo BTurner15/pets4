@@ -1,9 +1,12 @@
 <?php
 /**
- * Bruce Turner & Brian Kiehn Pair Programming IV
- * Creation Date: 4/26/2019
- * Time: 2:28 PM
- * Modified by: Bruce 05-06-2019 for Part# 1 of PP IV
+ * Pair Programming IV with Bruce Turner & Brian Kiehn
+ * GitHub Repo:https://github.com/BTurner15/pets4
+ * File: validation-functions.php
+ * Last Modification:
+ *     - Monday May 5 2019
+ *     - Time: 6:15 pm
+ *     - Version 1.0
  */
 /* validate a color
  *

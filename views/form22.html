@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!--
-/**
- * Pair Programming IV with Bruce Turner & Brian Kiehn
- * GitHub Repo:https://github.com/BTurner15/pets4
- * File: form2.html
- * Last Modification:
- *     - Monday May 5 2019
- *     - Time: 6:15 pm
- *     - Version 1.0
- */
- -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,6 +17,15 @@
             <check if="{{ isset(@errors['color']) }}">
                 <p> {{ @errors['color'] }}</p>
             </check>
+        </div>
+        <div class ="col-sm-3">
+            <p>diseases:</p>
+            <repeat group ="{{@diseases}}" value ="{{ @diseasesOption }}">
+                <label><input type="checkbox" name ="pattern[]" value="{{@diseasesOption}}">
+                    <check if="{{ in_array(@diseasesOption,@POST['pattern']) }}">checked
+                    </check>>{{@diseasesOption}}
+                </label>
+            </repeat>
         </div>
     </fieldset>
 
