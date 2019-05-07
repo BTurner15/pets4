@@ -1,4 +1,13 @@
 <?php
+/**
+ * Pair Programming IV with Bruce Turner & Brian Kiehn
+ * GitHub Repo:https://github.com/BTurner15/pets4
+ * File: index.php
+ * Last Modification:
+ *     - Monday May 5 2019
+ *     - Time: 6:15 pm
+ *     - Version 1.0
+ */
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -12,7 +21,7 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-$f3->set('colors', array('red', 'green', 'blue','orange', 'yellow'));
+$f3->set('colors', array('Red', 'Green', 'Blue','Orange', 'Yellow'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -34,11 +43,11 @@ $f3->route('GET|POST /order', function($f3) {
             // for Pets IV #1
             $_SESSION['qty'] = $_POST['qty'];
             $f3->reroute('/order2');
-            print_r($_SESSION);
+            //print_r($_SESSION);
         }
         else if ( validString($_POST['animal']) && !validQuantity($_POST['qty']) ) {
            $_SESSION['animal'] = $_POST['animal'];
-           $f3->set("errors['qty']", "Please enter an Quantity >= 1 of your pet(s)");
+           $f3->set("errors['qty']", 'Please enter an Quantity >= 1 of your pet(s)');
         }
         else if ( !validString($_POST['animal']) && validQuantity($_POST['qty']) ) {
            //instantiate an error array with message
