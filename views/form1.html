@@ -6,14 +6,24 @@
 </head>
 <body>
 <form action="#" method="POST">
-    <input type="text" name="animal" value="Animal">
+    <label>Animal
+    <input type="text" name="animal" value="{{ @SESSION['animal'] }}">
+    </label>
     <br>
-    <input type="submit" value="Next">
     <div class="col-sm-3">
         <check if="{{ isset(@errors['animal']) }}">
             <p> {{ @errors['animal'] }}</p>
         </check>
     </div>
+    <!-- For Part# 1 of Week 5 Pair Programming Pets IV -->
+    <label>Quantity
+        <input type="text" name="qty" value="{{ @SESSION['qty'] }}">
+        <check if="{{ @errors['qty'] }}">
+            <span class="err">{{ @errors['qty'] }}</span>
+        </check>
+    </label>
+
+    <input type="submit" value="Next">
 </form>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Dracula
- * Date: 4/26/2019
+ * Bruce Turner & Brian Kiehn Pair Programming IV
+ * Creation Date: 4/26/2019
  * Time: 2:28 PM
+ * Modified by: Bruce 05-06-2019 for Part# 1 of PP IV
  */
 /* validate a color
  *
     *@param String color
- * *return boolean
+ *   return boolean
  * */
 function validColor($color)
 {
@@ -23,4 +23,10 @@ function validString($animalStr)
 {
     global $f3;
     return ctype_alpha ($animalStr) AND ($animalStr !="");
+}
+/* for Part# 1 of Pair Programming Pets IV */
+function validQuantity($qty)
+{
+    global $f3;
+    return (!empty($qty)) && (ctype_digit($qty)) && ((int)$qty >= 1);
 }
