@@ -5,15 +5,16 @@
  * GitHub Repo:https://github.com/BTurner15/pets4
  * File: form2.html
  * Last Modification:
- *     - Monday May 5 2019
- *     - Time: 6:15 pm
- *     - Version 1.0
+ *     - Tuesday May 7 2019
+ *     - Time: 10:12 am
+ *     - Version 3.0
  */
  -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>form2.html</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 <body>
 <form action="#" method="POST">
@@ -24,21 +25,29 @@
                 <option>{{ @colorOption }}</option>
             </repeat>
         </select>
-        <div class="col-sm-3">
-            <check if="{{ isset(@errors['color']) }}">
-                <p> {{ @errors['color'] }}</p>
-            </check>
-        </div>
-        <div class ="col-sm-3">
-            <p>diseases:</p>
-            <repeat group ="{{@diseases}}" value ="{{ @diseasesOption }}">
-                <label><input type="checkbox" name ="pattern[]" value="{{@diseasesOption}}" <check if="{{ in_array(@diseasesOption,@POST['pattern']) }}">
-                    checked </check>>{{@diseasesOption}}</label>
-            </repeat>
-        </div>
+        <check if="{{ isset(@errors['color']) }}">
+            <span class="err"> {{ @errors['color'] }}</span>
+        </check>
     </fieldset>
+    <!-- On the second form, add a set of checkboxes. You can decide what these
+         represent, and determine your own validation rules. Make your form sticky.
+     array used:('accessories', array('one week of food', 'feeding station',
+                 'user manual', 'training & care booklet')) -->
+    <p>Accessories:
+    <check if="{{ @errors['access'] }}">
+        <span class="err">{{ @errors['access'] }}</span>
+    </check><br>
 
-    <input type="submit" value="Submit">
+    <repeat group="{{ @accessories }}" value="{{ @accessOption }}">
+        <label><input type="checkbox" name="access[]" value="{{ @accessOption }}"
+            <check if="{{ !empty(@access) && in_array(@accessOption, @access) }}">
+                checked="checked"
+            </check>
+            >{{ @accessOption }}</label><br>
+    </repeat>
+    </p>
+
+    <input type="submit" value="Place Order">
 </form>
 </body>
 </html>

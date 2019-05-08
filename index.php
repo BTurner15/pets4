@@ -4,13 +4,18 @@
  * GitHub Repo:https://github.com/BTurner15/pets4
  * File: index.php
  * Last Modification:
- *     - Monday May 5 2019
- *     - Time: 6:15 pm
- *     - Version 1.0
+ *     - Tuesday May 7 2019
+ *     - Time: 5:50 pm
+ *     - Version 4.0
+ * ok for PP Week 5 with Brian, here is a
+ * 1. On the first form, add a quantity field. Display an error message
+ * * for a quantity that is empty, non-numeric, or less than one.
+ * Make your form sticky. Ok, I am doing #2 because I need to know it!
  */
+
 session_start();
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 //Require autoload
 require_once('vendor/autoload.php');
@@ -18,10 +23,13 @@ require_once('model/validation-functions.php');
 
 //Create an instance of the Base Class
 $f3 = Base::instance();
+
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//Define arrays
 $f3->set('colors', array('Red', 'Green', 'Blue','Orange', 'Yellow'));
+$f3->set('accessories', array('one week of food', 'feeding station', 'user manual', 'training & care booklet'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -43,7 +51,6 @@ $f3->route('GET|POST /order', function($f3) {
             // for Pets IV #1
             $_SESSION['qty'] = $_POST['qty'];
             $f3->reroute('/order2');
-            //print_r($_SESSION);
         }
         else if ( validString($_POST['animal']) && !validQuantity($_POST['qty']) ) {
            $_SESSION['animal'] = $_POST['animal'];
@@ -62,30 +69,57 @@ $f3->route('GET|POST /order', function($f3) {
     echo $template->render('views/form1.html');
 });
 
-//Define a order2 route that uses POST for color selection
-//Get the data from form1 and add it to a session variable
+/* Define a order2 route that uses POST for color selection, and
+ * provision for optional accessory items via checkboxes
+ * We will consider the order completed if a color is selected via pull-down menu
+ * and NOT require the selection of any optional accessories
+ *
+ *
+ */
 //Display form2
 $f3->route('GET|POST /order2', function($f3) {
-     $template = new Template();
+    // if order to get here we have 'animal' and 'qty' validated & in $_SESSION
+
+    $template = new Template();
+    $access = $_POST['access'];
+
     if (isset($_POST['color'])) {
-        //check valid color
+        //check valid color, we will not allow reroute with unspecified color
         if (validColor($_POST['color'])) {
+            // we are done. Save, see if options are chosen, save as appropriate
+            // and then reroute either way
             $_SESSION['color'] = $_POST['color'];
+            if (empty($access)) {
+                $_SESSION['access'] = "No optional accessories selected";
+            } else {
+                $f3->set('access', $access);
+                $_SESSION['access'] = implode(', ', $access);
+            }
             $f3->reroute('/results');
         }
-        else
-        {
+        else {
             //instantiate an error array with message
-            $f3->set("errors['color']", "Some kind of color problem (spoofing)");
+            $f3->set("errors['color']", "color either not selected, or spoofing attempt");
+            //save optional accessories if present
+            if (empty($access)) {
+                $_SESSION['access'] = "No optional accessories selected";
+            } else {
+                $f3->set('access', $access);
+                $_SESSION['access'] = implode(', ', $access);
+            }
+        }
+    }
+    else {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            // this the 1st ever submission of form? if so, do NOT display wrong color error
+        }
+        else {
+            $f3->set("errors['color']", "color either not selected, or spoofing attempt");
         }
     }
     echo $template->render('views/form2.html');
 });
-/* ok for PP Week 5 with Brian, here is a
-* 1. On the first form, add a quantity field. Display an error message
- * * for a quantity that is empty, non-numeric, or less than one.
- * Make your form sticky.
- */
+
 
 $f3->route('GET|POST /results', function() {
     //rerouted via GET, POST array is empty
